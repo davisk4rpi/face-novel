@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
+  get 'users', to: 'users#index'
 
   get 'users/show'
 
@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
-  devise_for :users
+  devise_for :users, controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations',
+        passwords: 'users/passwords'
+      }
   root 'static_pages#home'
 
   get    '/about',   to: 'static_pages#about'
