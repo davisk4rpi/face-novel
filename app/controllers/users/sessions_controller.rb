@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
+before_filter :authenticate_user!, :except => [:sign_in, :sign_up]
 
   # GET /resource/sign_in
   # def new
