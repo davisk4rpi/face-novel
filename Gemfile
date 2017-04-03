@@ -5,6 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Allows index pagination
+gem 'will_paginate',            '3.1.0'
+# imports Bootstrap Library
+gem 'bootstrap-will_paginate',  '0.0.10'
+gem 'bootstrap-sass',           '3.3.6'
+# Generate temporary text
+gem 'faker',                    '1.6.6'
 # Devise for managing login and various password services
 gem 'devise',  '4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
