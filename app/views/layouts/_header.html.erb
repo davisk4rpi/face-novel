@@ -1,9 +1,24 @@
 <header>
-  <% if user_signed_in? %>
-    <p>Welcome Back <%= current_user.name %></p>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_registration_path %>
-    <%= link_to "Sign In", new_user_session_path %>
-  <% end %>
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <%= link_to "FaceNovel", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="container">
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li>
+            Welcome Back <%= current_user.name %>
+            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign Up", new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Sign In", new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 </header>
