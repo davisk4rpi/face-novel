@@ -2,11 +2,7 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
-    post user_registration_path, params: { user: { name:  "Tester",
-                                           email: "user@valid.com",
-                                           password:              "foobar",
-                                           password_confirmation: "foobar" } }
-    sign_out :user
+    @user = users(:tom)
   end
 
   test "should get redirected" do
@@ -15,15 +11,15 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
     get new_user_registration_path
     assert_response :success
+    assert_select "a[href=?]", new_user_session_path
+    assert_select "a[href=?]", new_user_registration_path
   end
 
   test "successful login" do
     get new_user_session_path
-    assert_response :success do
-      post user_session_path, params: { user: { email:    "user@invalid.com",
-                                                password: "foobar",}}
-      assert_redirected_to root_path
-    end
+    sign_in @user
+    get root_path
+    assert_select "a[href=?]", destroy_user_session_path
   end
 
   test "unsuccessful login" do
