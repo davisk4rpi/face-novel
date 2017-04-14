@@ -6,7 +6,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "should get redirected" do
-    get users_edit_url
+    get root_url
     assert_response :redirect
     assert_redirected_to new_user_session_path
     get new_user_registration_path
@@ -20,6 +20,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     sign_in @user
     get root_path
     assert_select "a[href=?]", destroy_user_session_path
+    assert_select "a[href=?]", user_path(@user.id)
+    get user_path(@user)
+    assert_select "a[href=?]", edit_user_registration_path
   end
 
   test "unsuccessful login" do
