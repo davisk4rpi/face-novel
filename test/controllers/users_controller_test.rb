@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = users(:tom)
+    sign_in @user
+  end
+
   test "should get index" do
-    get users_index_url
+    get users_url
     assert_response :success
   end
 
@@ -10,12 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_show_url
     assert_response :success
   end
-
-  test "should get new" do
-    get users_new_url
-    assert_response :success
-  end
-
+  
   test "should get edit" do
     get users_edit_url
     assert_response :success

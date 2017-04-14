@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         passwords: 'users/passwords'
       }, skip: [:sessions]
+
   as :user do
     get 'sign_in', to: 'devise/sessions#new', as: :new_user_session
     post 'sign_in', to: 'devise/sessions#create', as: :user_session
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   end
 
   get 'users/show'
-  get 'sign_up',    to: 'users#new'
   get 'users/edit'
 
   get    '/about',   to: 'static_pages#about'
