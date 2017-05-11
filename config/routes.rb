@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'friendships/create'
+
+  get 'friendships/update'
+
+  get 'friendships/destroy'
+
   root 'static_pages#home'
   get 'users', to: 'users#index'
 
