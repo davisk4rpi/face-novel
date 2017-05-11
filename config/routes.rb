@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  get 'users', to: 'users#index'
 
   devise_for :users, controllers: {
         #sessions: 'users/sessions',
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :friendships, only: [:create, :update, :destroy]
 
   get    '/about',   to: 'static_pages#about'

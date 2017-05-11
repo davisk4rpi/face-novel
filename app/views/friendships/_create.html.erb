@@ -1,8 +1,1 @@
-<ul>
-    <% @users.each do |user| %>
-        <li>
-            <%= user.name %> |
-            <%= link_to "Add Friend", friendships_path(friend_id: user), method: :post %>
-        </li>
-    <% end %>
-</ul>
+<%= link_to "Add Friend", friendships_path(friend_id: user.id), method: :post %>
