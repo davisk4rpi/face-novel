@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'friendships/create'
-
-  get 'friendships/update'
-
-  get 'friendships/destroy'
-
   root 'static_pages#home'
   get 'users', to: 'users#index'
 
@@ -21,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
+  resources :friendships, only: [:create, :update, :destroy]
 
   get    '/about',   to: 'static_pages#about'
 
