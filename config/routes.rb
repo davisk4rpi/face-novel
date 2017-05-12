@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :index]
+  get '/notifications', to: 'users#notifications'
   resources :friendships, only: [:create, :update, :destroy]
 
   get    '/about',   to: 'static_pages#about'

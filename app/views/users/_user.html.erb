@@ -1,11 +1,15 @@
-<h2><%= user.name %></h2>
-<p>Email: <%= user.email %></p>
-<% unless user == current_user %>
-  <% if current_user.pending_friends.include? user %>
-    <p>Waiting for acceptance</p>
-  <% elsif current_user.friends.include? user %>
-    <p>Friend</p>
-  <% else %>
-    <%= link_to "Add Friend", friendships_path(friend_id: user.id), method: :post %>
+<div class="well">
+  <h2><%= link_to user.name, user_path(user) %></h2>
+  <% unless user == current_user %>
+    <% if current_user.pending_friends.include? user %>
+      <p>Waiting for acceptance</p>
+    <% elsif current_user.friends.include? user %>
+      <p>Friend</p>
+    <% elsif user.pending_friends.include? current_user %>
+      <%= link_to "Accept",  friendship_path(id: user.id), method: "put", class:"btn btn-primary" %>
+      <%= link_to "Decline", friendship_path(id: user.id), method: :delete, class:"btn btn-warning" %>
+    <% else %>
+      <%= link_to "Add Friend", friendships_path(friend_id: user.id), method: :post, class:"btn btn-primary" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

@@ -13,4 +13,7 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  def notifications
+  end
 end
