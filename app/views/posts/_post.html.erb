@@ -1,0 +1,4 @@
+<%= form_for(@post) do |f| %>
+  <%= f.text_area :content, placeholder: "How are you feeling?" %>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
