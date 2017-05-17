@@ -26,11 +26,20 @@ User.create!(name:  "Example User4",
                email: Faker::Internet.email,
                password: "foobar")
 end
+10.times do |n|
+  User.first.friendships.create(friend_id: n+1, accepted: true)
+  User.second.friendships.create(friend_id: n+2, accepted: true)
+end
+
+User.where(id: 2..15).each do |u|
+  u.friendships.create(friend_id: u.id+1, accepted:true)
+end
 
 User.all.each do |u|
   n = rand(10) + 1
-  n.times do |m|
-    t = Time.now - m.hours
+  n.times do
+    x = rand(n)
+    t = Time.now - x.hours
     p = u.posts.create(content: Faker::StarWars.quote)
     p.created_at = t
     p.save

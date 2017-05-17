@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :posts
 
   def friends
-     active_friends | received_friends
+    active_friends | received_friends
   end
 
   def pending
