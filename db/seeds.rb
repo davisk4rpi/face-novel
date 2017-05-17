@@ -20,3 +20,19 @@ User.create!(name:  "Example User3",
 User.create!(name:  "Example User4",
              email: "example4@example.org",
              password: "foobar")
+
+10.times do
+  User.create!(name:  Faker::StarWars.character,
+               email: Faker::Internet.email,
+               password: "foobar")
+end
+
+User.all.each do |u|
+  n = rand(10) + 1
+  n.times do |m|
+    t = Time.now - m.hours
+    p = u.posts.create(content: Faker::StarWars.quote)
+    p.created_at = t
+    p.save
+  end
+end
