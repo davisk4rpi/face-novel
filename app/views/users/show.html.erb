@@ -7,6 +7,16 @@
 <% @posts.each do |post| %>
   <div class="well">
     <p><%= post.content %></p>
+    <% if post.likes.where(user_id: current_user.id).exists? %>
+      <%= form_for :like, method: :delete, url: post_like_path(post.id, 1) do |f| %>
+        <p><%= f.submit "Unlike" %></p>
+      <% end %>
+    <% else %>
+      <%= form_for :like, url: post_likes_path(post.id) do |f| %>
+        <p><%= f.submit "Like" %></p>
+      <% end %>
+    <% end %>
+    <p><em><%= pluralize(post.likes.count, "like") %></em></p>
     <p><em>Posted <%= time_ago_in_words(post.created_at)%> ago</em></p>
   </div>
 <% end %>

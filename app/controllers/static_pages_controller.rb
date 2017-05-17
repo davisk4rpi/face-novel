@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
       f_ids = friends.map { |f| f.id }
       f_ids << current_user.id
       @posts = Post.where(user_id: f_ids).order(created_at: :desc)
+      # @like = current_user.likes.build
     end
   end
 
