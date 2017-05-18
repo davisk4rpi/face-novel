@@ -20,5 +20,15 @@
     <% end %>
     <p><em><%= pluralize(post.likes.count, "like") %></em></p>
     <p><em>Posted <%= time_ago_in_words(post.created_at)%> ago</em></p>
+    <% post.comments.each do |c| %>
+      <div class="well">
+        <p><%= c.user.name %></p>
+        <p><%= c.content %> </p>
+      </div>
+    <% end %>
+    <%= form_for :comment, url: post_comments_path(post.id) do |f| %>
+      <%= f.text_area  :content, size: "90x4" %>
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>

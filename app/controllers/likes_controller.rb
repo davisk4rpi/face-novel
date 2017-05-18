@@ -11,7 +11,7 @@ class LikesController < ApplicationController
   def destroy
     @like = Like.find_by(user_id: current_user.id, post_id: params[:post_id])
     @like.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "Post Unliked"
     redirect_back(fallback_location: root_url)
   end
 
